@@ -81,6 +81,29 @@ int read_float(string str[], int i, string variable_name,
 
 }
 
+// read variables in as int
+
+int read_int(string str[], int i, string variable_name,
+               int &int_value, ofstream &file)
+
+{
+    
+    char* c;
+    
+    variable_name = str[i];
+    file << variable_name << "=\t" << endl;
+    cout << variable_name << "=\t" << endl;
+    
+    c = const_cast<char*>(str[i+1].c_str());
+    sscanf(c,"%d", &int_value);
+    file << int_value << endl << "\n";
+    cout << int_value << endl << "\n";
+    
+    return 0;
+    
+}
+
+
 //  End of test by Yixin Zhang
 
 /**
@@ -92,16 +115,42 @@ int read_float(string str[], int i, string variable_name,
  *
  */
  
-double mesh_gen (double x, double y, double dx, double dy)
+double mesh_gen_o (float area_x, float area_y, int n_x, int n_y)
 
 {
 	
     cout <<  "Running: mesh_generator\n";
     cout << endl;
+    
+    // Perform operation.
+    
+    float X[n_x], Y[n_y];
+    
+    for (int i=0; i<n_x; i++)
+    {
+        
+        X[i] = i * area_x / (n_x-1);
+        cout << X[i] << "  ";
+        
+    }
+    
+    cout << "\n";
+    
+    for (int j=0; j<n_y; j++)
+    {
+        
+        Y[j] = j * area_y / (n_y-1);
+        cout << Y[j] << "  ";
+        
+    }
+    
+    cout << "\n";
   
     return 0;
 
 }
+
+
 
 /**
  * Author:            Yixin Zhang

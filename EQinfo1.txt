@@ -7,8 +7,8 @@ total_time     600
 waveform       wavelet.f
 area_x         20
 area_y         20
-grid_x         0.01
-grid_y         0.01
+n_x            101
+n_y            101
 moment         7.8
 
 

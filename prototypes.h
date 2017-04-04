@@ -36,6 +36,9 @@ int read_string(string str[], int i, string variable_name,
 int read_float(string str[], int i, string variable_name,
     float &float_value, ofstream &file);
 
+int read_int(string str[], int i, string variable_name,
+             int &int_value, ofstream &file);
+
 int read_wave_file ();
 
 
@@ -66,7 +69,7 @@ double der_wavf_func (double t[],double t_der[]);
 // -----------------------------------------------------------------------------------------------
 //
 
-double mesh_gen (double x, double y, double dx, double dy);
+double mesh_gen_o (float area_x, float area_y, int n_x, int n_y);
 
 
 //
