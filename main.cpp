@@ -114,11 +114,14 @@ int main(int argc, char* argv[])
     double *theta = new double[1];
     double *phi = new double[1]; 
 
-    // if (rank == 1 ) 
+    //if (rank == 1 ) 
     //{
-        // This function generates a guassian function and its derivative
+    //    //This function generates a guassian function and its derivative
         gauss_func (h, h_der, len, &params);
     //};
+
+    //MPI_Bcast(&h, len, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    //MPI_Bcast(&h_der, len, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
     // Create a barrier here
     MPI_Barrier(MPI_COMM_WORLD);
@@ -131,9 +134,10 @@ int main(int argc, char* argv[])
 
     if ((rank == 2) )
     {
-        for (int i= -ni; i <= ni; i++){
-            for (int j= -nj; j <= nj; j++){
-
+        for (int i= -ni; i <= ni; i++)
+        {
+            for (int j= -nj; j <= nj; j++)
+            {
                 double xx = 4 * i / params.length_x;
                 double yy = 4 * j / params.length_y;
 
@@ -170,6 +174,9 @@ int main(int argc, char* argv[])
             };
         };
     };
+
+    // Create a barrier here
+    MPI_Barrier(MPI_COMM_WORLD);
 
     if ( rank == 0 ) 
     {    
