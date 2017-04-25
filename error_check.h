@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <cmath>
 #include <cstdlib>
+#include <mpi.h>
 
 using namespace std;
 
@@ -33,3 +34,5 @@ int check_loc(double R, double theta, double phi);
 int check_t_len(double len, int i);
 
 int check_outfile(int index, int str);
+
+int check_size(int i);

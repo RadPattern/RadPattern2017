@@ -72,17 +72,13 @@ int main(int argc, char* argv[])
     // Captures the total number of processes
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    if (size != 4 ) 
-    {
-        cout << "\nQuitting. Number of MPI tasks must be 4.\n\n";
-        MPI_Abort(MPI_COMM_WORLD, 0);
-        exit(EXIT_FAILURE);
-    };
+    int X = pow(size,0.5);
+    check_size(size - pow(X,2)); 
 
     if ( rank == 0 ) 
     {
         cout << "Welcome to Radiation Pattern parallel program!\n";
-        cout << endl;      
+        cout << endl;
     }; 
 
     // Create a barrier here
@@ -96,13 +92,10 @@ int main(int argc, char* argv[])
     displacement displ; 
     radiation_pattern radiation;
     
-    // if ( rank == 1 ) 
-    //{
-        // Parameters will be read from input file, checked  for their reasonability,
-        // stored into memory, and then written into login file
-        process_parameter(argc, argv, &params); 
-    //};
-
+    // Parameters will be read from input file, checked  for their reasonability,
+    // stored into memory, and then written into login file
+    process_parameter(argc, argv, &params); 
+    
     int len = params.total_time/ params.time_step;
     double *t = new double[len];   
     init_time (t, len, &params); //initializes time array
@@ -113,67 +106,49 @@ int main(int argc, char* argv[])
     double *theta = new double[1];
     double *phi = new double[1]; 
 
-    // if (rank == 1 ) 
-    //{
-        // This function generates a guassian function and its derivative
-        gauss_func (h, h_der, len, &params);
-    //};
-
+    //This function generates a guassian function and its derivative
+    gauss_func (h, h_der, len, &params);
+ 
     // Create a barrier here
     MPI_Barrier(MPI_COMM_WORLD);
 
     // Now we want to iterate over the grid centers and determine the radiation
     // pattern and displacement based on the type of force specified
+    int ni = (params.n_x - 1);
+    int nj = (params.n_y - 1);
 
-    int ni = (params.n_x - 1)/ 2;
-    int nj = (params.n_y - 1)/ 2;
+    int my_xstart = -(ni / 2.) + (ni / X) * (rank % X);
+    int my_xend   = -(ni / 2.) + (ni / X) * ((rank % X) + 1);
+    int my_ystart = -(nj / 2.) + (nj / X) * (rank / X);
+    int my_yend   = -(nj / 2.) + (nj / X) * ((rank / X) + 1);
 
-    if ((rank == 2) )
+    for (int i= my_xstart; i <= my_xend; i++)
     {
-        for (int i= -ni; i <= ni; i++){
-            for (int j= -nj; j <= nj; j++){
+        for (int j= my_ystart; j <= my_yend; j++)
+        {
+            double xx = params.length_x * i / ni;
+            double yy = params.length_y * j / nj;
 
-                double xx = 4 * i / params.length_x;
-                double yy = 4 * j / params.length_y;
-
+            if (xx != 0 )
+            {
                 check_grid(xx, yy, &params);
                 cart_2_sph (xx, yy, R, theta, phi);
 
-                if ((xx < 0) & (yy > 0) & (rank == 0))
-                {
-                    compute_displ (R[1], theta[1], phi[1] , h, h_der, &displ, len, &params);
-                    rad_pattern (theta[1], phi[1], &radiation, &params);
-                    write_2_file (&displ, &radiation, t, xx, yy, params.outputfile_path, len);
-                };
-
-                if ((xx >= 0) & (yy >= 0) & (rank == 1))
-                {
-                    compute_displ (R[1], theta[1], phi[1] , h, h_der, &displ, len, &params);
-                    rad_pattern (theta[1], phi[1], &radiation, &params);
-                    write_2_file (&displ, &radiation, t, xx, yy, params.outputfile_path, len);
-                };
-
-                if ((xx > 0) & (yy < 0) & (rank == 2))
-                {
-                    compute_displ (R[1], theta[1], phi[1] , h, h_der, &displ, len, &params);
-                    rad_pattern (theta[1], phi[1], &radiation, &params);
-                    write_2_file (&displ, &radiation, t, xx, yy, params.outputfile_path, len);
-                };
-
-                if ((xx <= 0) & (yy <= 0) & (rank == 3))
-                {
-                    compute_displ (R[1], theta[1], phi[1] , h, h_der, &displ, len, &params);
-                    rad_pattern (theta[1], phi[1], &radiation, &params);
-                    write_2_file (&displ, &radiation, t, xx, yy, params.outputfile_path, len);
-                };
-            };
+                compute_displ (R[1], theta[1], phi[1] , h, h_der, &displ, len, &params);
+                rad_pattern (theta[1], phi[1], &radiation, &params);
+                write_2_file (&displ, &radiation, t, xx, yy, params.outputfile_path, len);
+             };
         };
     };
+
+    // Create a barrier here
+    MPI_Barrier(MPI_COMM_WORLD);
 
     if ( rank == 0 ) 
     {    
         cout << "I have completed running all the functions.\n"
         "Good bye.\n"<< endl;
+
         std::cout << "Execution time : "<<float( clock () - t1 ) / CLOCKS_PER_SEC<< endl;
     };
     

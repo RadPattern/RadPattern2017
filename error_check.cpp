@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <cstdlib>
 #include <cmath>
+#include <mpi.h>
 
 #include "read_in.h"
 #include "struct.h"
@@ -200,3 +201,31 @@ int check_outfile(int index, int str)
 
     return 0;
 };
+
+/**
+ * Author:            Oluwaseun Fadugba
+ *
+ * Short description: 
+ * This function checks if the number of requested processsors is a power of 2
+ *
+ */
+
+int check_size(int i)
+{
+    if (i != 0)
+    { 
+        cout << "--------------------------Error! ------------------------------ \n";
+        cout << "---------Error in the number of requested processors----------- \n";
+        cout << "---Quitting. Please enter MPI tasks that is a power of 2------- \n";
+        cout << "--------------------------------------------------------------- \n";
+        cout << endl;
+
+        MPI_Abort(MPI_COMM_WORLD, 0);
+        exit(EXIT_FAILURE);
+    };  
+
+    return 0;
+};
+
+
+

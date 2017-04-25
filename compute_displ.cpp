@@ -46,7 +46,6 @@ int compute_displ (
 
     // displacement for P and SH-SV waves. Time shift is included.
     compute_displ_P (R, theta, phi , h, h_der, displ, len, params);
-
     compute_displ_SH_SV (R, theta, phi , h, h_der, displ, len, params);
 
     return 0;
@@ -171,5 +170,6 @@ int compute_displ_SH_SV (
                                    moment * h[i]) / (4.0 * PI * rho * pow(beta, 3) * R);
         };
     };
+  
     return 0;
 };
