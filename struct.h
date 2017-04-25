@@ -1,3 +1,10 @@
+/**
+ * @short   structure header file
+ * @file    struct.h
+ * @author  Oluwaseun Fadugba, Yixin Zhang and Eric Jambo
+ *
+ */
+
 #include <string>
 #include <stdlib.h>
 #include <cstdlib>

@@ -22,8 +22,6 @@
 
 using namespace std;
 
-#define PI 3.14159265
-
 /**
  * Author:            Oluwaseun Fadugba
  *

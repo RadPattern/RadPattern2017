@@ -4,8 +4,7 @@
  * @author  Oluwaseun
  *
  * This file contains functions compute_displ.cpp and its helper functions,
- * and init_time.cpp to calculate the dispalcement given necessary parameters
- * and initialize the time vector.
+ * and init_time.cpp to calculate the dispalcement given necessary parameters.
  *
  */
 
@@ -55,7 +54,7 @@ int compute_displ (double R, double theta, double phi, double *h, double *h_der,
  * Author:            Oluwaseun Fadugba
  *
  * Short description: This function determines the displacement for P-wave after
- * applying necessary time shift to the guassian function
+ * applying necessary time shift to the gaussian function
  *
  * Return             0 on sucess
  *
@@ -112,7 +111,7 @@ int compute_displ_P (double R, double theta, double phi, double *h, double *h_de
  * Author:            Oluwaseun Fadugba
  *
  * Short description: This function determines the displacement for SH- and SV- waves after
- * applying necessary time shift to the guassian function
+ * applying necessary time shift to the gaussian function
  *
  * Return             0 on sucess
  *

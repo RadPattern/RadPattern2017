@@ -1,7 +1,7 @@
 /**
  * @short   radiation Headers
  * @file    radiation.h
- * @author  Oluwaseun Fadugba, Yixin Zhang and Eric Jambo
+ * @author  Eric Jambo
  *
  *This function generates P-, SH- and SV-wave radiation patterns for 
  *single couple force, double couple, force dipole and point forces using

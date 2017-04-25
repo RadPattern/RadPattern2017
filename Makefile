@@ -37,5 +37,5 @@ clean:
 	rm -f myprogram *.o
 
 cleanall:
-	rm -f myprogram *.o login.txt *displ.txt *rad_patt.txt output.txt parameter_outfile.txt *~
+	rm -f myprogram *.o logfile.txt *displ.txt *rad_patt.txt output.txt parameter_outfile.txt *~
 	rm -rf html/ latex/ data/*
