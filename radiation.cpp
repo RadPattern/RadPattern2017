@@ -24,9 +24,6 @@
 
 using namespace std;
 
-// defining the value of PI.
-#define PI 3.14159265
-
 int rad_pattern (double theta, double phi, radiation_pattern *radiation, Parameters *params)
 {
     // Check variables

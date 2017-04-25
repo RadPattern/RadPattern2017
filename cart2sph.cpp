@@ -1,7 +1,7 @@
 /**
  * @short   Convert cartesian coordinates to spherical
  * @file    cart2sph.cpp
- *@author  Eric Jambo
+ *@author   Eric Jambo
  *
  * This file contains the function to convert the cartesian coordinates into spherical coordinates
  * using location(x,y) from the generated mesh grid
@@ -31,7 +31,6 @@ const double Degrees = 180.0/PI; // Radians to Degrees
 double cart_2_sph(double xx, double yy, double *R, double *theta, double *phi)
 {
     double z = 0.0;
-
     if (xx !=0)
     {
     	R[1] = sqrt((pow(xx,2))+(pow(yy,2))+(pow(z,2))); // distance
@@ -41,5 +40,5 @@ double cart_2_sph(double xx, double yy, double *R, double *theta, double *phi)
         return 0;
    }
    
-    return false;
+   return false;
 }

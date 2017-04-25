@@ -3,7 +3,7 @@
  * @file    gaussian.cpp
  * @author  Eric Jambo
  *
- * short description:This file contains the functions used to generate a guassian
+ * short description:This file contains the functions used to generate a gaussian
  *                   function and its derivative using total time and time steps.
  *
  * Return   0 on sucess
@@ -28,8 +28,7 @@ using namespace std;
 #define PI 3.14159265
 
 void gauss_func (double *h, double *h_der, int len, Parameters *params)
-{
-    
+{    
     double total_time = params->total_time; 
     double time_step = params->time_step;
     double a = 2.2/ total_time;  //Mean of distribution
@@ -42,8 +41,7 @@ void gauss_func (double *h, double *h_der, int len, Parameters *params)
     // generate gaussian time function and its derivative
     for (double time = 0; time <= total_time; time += time_step) 	
     {
-         i++;
-        
+         i++;        
          if(time <=10*sigma)
          {  
             h[i] = (1/sqrt(PI * s))*(exp(-(time-a)*(time-a)/s));

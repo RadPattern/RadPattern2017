@@ -43,8 +43,6 @@
 
 using namespace std;
 
-#define PI 3.14159265
-
 /**
  * @short   Main program
  * @file    main.cpp

@@ -3,7 +3,7 @@
  * @file    compute_displ.h
  * @author  Oluwaseun Fadugba
  *
- * This file contains the prototypes compute_displ.cpp and init_time.cpp
+ * This file contains the prototypes compute_displ.cpp
  *
  */
 
