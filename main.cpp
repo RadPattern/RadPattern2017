@@ -73,7 +73,6 @@ int main(int argc, char* argv[])
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     int X = pow(size,0.5);
-
     check_size(size - pow(X,2)); 
 
     if ( rank == 0 ) 
@@ -115,7 +114,6 @@ int main(int argc, char* argv[])
 
     // Now we want to iterate over the grid centers and determine the radiation
     // pattern and displacement based on the type of force specified
-
     int ni = (params.n_x - 1);
     int nj = (params.n_y - 1);
 
@@ -155,6 +153,6 @@ int main(int argc, char* argv[])
     };
     
     MPI_Finalize();
-    
+
     return 0;
-}
+};

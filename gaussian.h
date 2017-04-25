@@ -22,5 +22,5 @@ using namespace std;
 // using total time and time steps
 // ------------------------------------------------------------------------------------
 
-double gauss_func (double *h, double *h_der, int len, Parameters *params);
+void gauss_func (double *h, double *h_der, int len, Parameters *params);
 

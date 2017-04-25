@@ -1,8 +1,10 @@
 /**
- * Author:            Eric Jambo
+ * @short   Convert cartesian coordinates to spherical
+ * @file    cart2sph.cpp
+ *@author  Eric Jambo
  *
- * Short description: This function converts the cartesian coordinates into spherical coordinates
- *                    using location(x,y) from the generated mesh grid
+ * This file contains the function to convert the cartesian coordinates into spherical coordinates
+ * using location(x,y) from the generated mesh grid
  *
  * Return             0 on sucess
  *
@@ -16,6 +18,7 @@
 #include <stdlib.h>
 #include <cstdlib>
 #include <cmath>
+
 #include "cart2sph.h"
 
 using namespace std;
@@ -34,7 +37,6 @@ double cart_2_sph(double xx, double yy, double *R, double *theta, double *phi)
     	R[1] = sqrt((pow(xx,2))+(pow(yy,2))+(pow(z,2))); // distance
 	theta[1] = acos(z/R[1])* Degrees;
     	phi[1] = atan2(yy, xx) * Degrees;
-        //cout<< R <<":"<< theta << ":" << phi<<endl; //commented out for using too much space
         return 0;
    }
    return false;

@@ -18,7 +18,6 @@
 #include <cstdlib>
 #include <cmath>
 
-#include "read_in.h"
 #include "struct.h"
 #include "gaussian.h"
 
@@ -28,8 +27,7 @@ using namespace std;
 
 #define PI 3.14159265
 
-double gauss_func (double *h, double *h_der, int len, Parameters *params)
-
+void gauss_func (double *h, double *h_der, int len, Parameters *params)
 {
     
     double total_time = params->total_time; 
@@ -42,8 +40,7 @@ double gauss_func (double *h, double *h_der, int len, Parameters *params)
     int i = 0;
 
     // generate gaussian time function and its derivative
-    for (double time = 0; time <= total_time; time += time_step) 
-	
+    for (double time = 0; time <= total_time; time += time_step) 	
     {
          i++;
          if(time <=10*sigma)
@@ -56,6 +53,5 @@ double gauss_func (double *h, double *h_der, int len, Parameters *params)
               h_der[i] =0.0;
              }
     }
- 
-    return 0;
+    return;
 }

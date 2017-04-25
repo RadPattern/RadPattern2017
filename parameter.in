@@ -12,5 +12,5 @@ n_y            201
 moment         7.8
 density        2.7
 
-logfile_path     ./data/logfile.txt
+logfile_path     logfile.txt
 outputfile_path  second_simul
