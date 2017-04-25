@@ -88,8 +88,8 @@ int main(int argc, char* argv[])
     {
         for (int j= -nj; j <= nj; j++)
         {
-            double xx = 4 * i / params.length_x;
-            double yy = 4 * j / params.length_y;
+            double xx = params.length_x * i / (2*ni);
+            double yy = params.length_y * j / (2*nj);
 
             check_grid(xx, yy, &params);
             cart_2_sph (xx, yy, R, theta, phi);
