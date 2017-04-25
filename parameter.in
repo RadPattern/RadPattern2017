@@ -7,8 +7,8 @@ total_time     10
 waveform       wavelet.f
 length_x         20
 length_y         20
-n_x            101
-n_y            101
+n_x            201
+n_y            201
 moment         7.8
 density        2.7
 
