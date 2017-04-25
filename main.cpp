@@ -86,9 +86,10 @@ int main(int argc, char* argv[])
     int ni = (params.n_x - 1)/ 2;
     int nj = (params.n_y - 1)/ 2;
 
-    for (int i= -ni; i <= ni; i++){
-        for (int j= -nj; j <= nj; j++){
-
+    for (int i= -ni; i <= ni; i++)
+    {
+        for (int j= -nj; j <= nj; j++)
+        {
             double xx = 4 * i / params.length_x;
             double yy = 4 * j / params.length_y;
 
@@ -97,12 +98,11 @@ int main(int argc, char* argv[])
             compute_displ (R[1], theta[1], phi[1] , h, h_der, &displ, len, &params);
             rad_pattern (theta[1], phi[1], &radiation, &params);
             write_2_file (&displ, &radiation, t, xx, yy, params.outputfile_path, len);
-        };
-    };
+        }
+    }
 
-    cout << "I have completed running all the functions.\n"
-    "Good bye.\n"<< endl;
-    std::cout << "Execution time : "<<float( clock () - t1 ) / CLOCKS_PER_SEC<< endl;
+    cout << "I have completed running all the functions.\n" << "Good bye.\n"<< endl;
+    cout << "Execution time : "<<float( clock () - t1 ) / CLOCKS_PER_SEC<< endl;
 
     return 0;
-};
+}

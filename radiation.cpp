@@ -21,6 +21,7 @@
 #include "struct.h"
 #include "radiation.h"       
 #include "error_check.h"
+
 using namespace std;
 
 // defining the value of PI.
@@ -39,7 +40,6 @@ int rad_pattern (double theta, double phi, radiation_pattern *radiation, Paramet
     return 0;
 }
 
-
 int rad_pattern_x (double theta, double phi, radiation_pattern *radiation, Parameters *params)
 {
     string force_type = params->force_type;
@@ -49,7 +49,6 @@ int rad_pattern_x (double theta, double phi, radiation_pattern *radiation, Param
         radiation->P_x  = abs(cos(theta))*sin(theta)*cos(phi);    
         radiation->SH_x = pow(sin(theta),2)*cos(phi);
         radiation->SV_x = pow(sin(theta),2)*cos(phi);
-   
     }
 
     if (force_type == "single_couple")
@@ -72,7 +71,8 @@ int rad_pattern_x (double theta, double phi, radiation_pattern *radiation, Param
         radiation->SH_x = pow(sin(theta),2)*sin(2.0*phi)*cos(phi);            
         radiation->SV_x = -cos(theta)*pow(cos(phi),2)*sin(theta);
     }
-return 0;
+    
+    return 0;
 }
 
 
@@ -85,7 +85,6 @@ int rad_pattern_y (double theta, double phi, radiation_pattern *radiation, Param
         radiation->P_y  = abs(cos(theta))*sin(theta)*sin(phi);            
         radiation->SH_y = pow(sin(theta),2)*sin(phi);
         radiation->SV_y = pow(sin(theta),2)*sin(phi);
-   
     }
 
     if (force_type == "single_couple")
@@ -108,5 +107,6 @@ int rad_pattern_y (double theta, double phi, radiation_pattern *radiation, Param
         radiation->SH_y = pow(sin(theta),2)*sin(2.0*phi)*sin(phi);            
         radiation->SV_y = abs(cos(theta)*cos(phi))*sin(theta)*sin(phi);
     }
-return 0;
+    
+    return 0;
 }

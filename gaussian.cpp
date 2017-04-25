@@ -32,8 +32,8 @@ void gauss_func (double *h, double *h_der, int len, Parameters *params)
     
     double total_time = params->total_time; 
     double time_step = params->time_step;
-
     double a = 2.2/ total_time;  //Mean of distribution
+    
     // set standard deviation
     double sigma = 0.75;
     double s = 2.0 * sigma * sigma;
@@ -43,15 +43,18 @@ void gauss_func (double *h, double *h_der, int len, Parameters *params)
     for (double time = 0; time <= total_time; time += time_step) 	
     {
          i++;
+        
          if(time <=10*sigma)
          {  
             h[i] = (1/sqrt(PI * s))*(exp(-(time-a)*(time-a)/s));
             h_der[i] = -(time - a)/((s*s*s)*sqrt(2.0*PI))*exp(-(time -a)*(time-a)/s);
          }
-         else{
-              h[i]=0.0;
-              h_der[i] =0.0;
-             }
+         else
+         {
+             h[i]=0.0;
+             h_der[i] =0.0;
+         }
     }
+    
     return;
 }

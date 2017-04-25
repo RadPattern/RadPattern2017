@@ -19,13 +19,11 @@
 
 using namespace std;
 
-int write_2_file (
-    displacement *displ, radiation_pattern *radiation, 
-    double *t, double xx, double yy, string outputfilename, int len);
+int write_2_file (displacement *displ, radiation_pattern *radiation,
+                  double *t, double xx, double yy, string outputfilename, int len);
 
-int write_displ (
-    displacement *displ,
-    double *t, double xx, double yy, string outputfilename, int len);
+int write_displ (displacement *displ, double *t, double xx, double yy,
+                 string outputfilename, int len);
 
-int write_rad_patt (
-    radiation_pattern *radiation, double xx, double yy, string outputfilename);
+int write_rad_patt (radiation_pattern *radiation, double xx, double yy,
+                    string outputfilename);

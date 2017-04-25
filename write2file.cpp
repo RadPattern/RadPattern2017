@@ -32,9 +32,8 @@ using namespace std;
  *
  */
 
-int write_2_file (
-    displacement *displ, radiation_pattern *radiation,
-    double *t, double xx, double yy, string outputfilename, int len)
+int write_2_file (displacement *displ, radiation_pattern *radiation,
+                  double *t, double xx, double yy, string outputfilename, int len)
 {
     // write radiation pattern
     write_rad_patt (radiation, xx, yy, outputfilename);
@@ -57,8 +56,7 @@ int write_2_file (
  *
  */
 
-int write_displ (
-    displacement *displ, double *t, double xx, double yy, string outputfilename, int len)
+int write_displ (displacement *displ, double *t, double xx, double yy, string outputfilename, int len)
 {
     char str[80]; strcpy (str,outputfilename.c_str()); strcat (str,"_displ.txt");
 
@@ -87,7 +85,7 @@ int write_displ (
     fout.close();
     
     return 0;
-};
+}
 
 /**
  * Author:            Oluwaseun Fadugba
@@ -121,4 +119,4 @@ int write_rad_patt (
     fout.close();
 
     return 0;
-};
+}

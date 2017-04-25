@@ -37,8 +37,8 @@ using namespace std;
 
 int init_time (double *t, double len, Parameters *params)
 {
-
     int i = 0;
+    
     for (double tt=0; tt <= (params->total_time - params->time_step); tt+= params->time_step)
     {
         i++;
@@ -48,5 +48,5 @@ int init_time (double *t, double len, Parameters *params)
     // Check the length of the time array
     check_t_len(len, i);
 
-return 0;
-};
+    return 0;
+}

@@ -37,9 +37,8 @@ using namespace std;
  *
  */
 
-int compute_displ (
-    double R, double theta, double phi, double *h, double *h_der,
-    displacement *displ, int len, Parameters *params)
+int compute_displ (double R, double theta, double phi, double *h, double *h_der,
+                   displacement *displ, int len, Parameters *params)
 {
     // Check variables
     check_loc(R, theta, phi);
@@ -50,7 +49,7 @@ int compute_displ (
     compute_displ_SH_SV (R, theta, phi , h, h_der, displ, len, params);
 
     return 0;
-};
+}
 
 /**
  * Author:            Oluwaseun Fadugba
@@ -62,9 +61,8 @@ int compute_displ (
  *
  */
 
-int compute_displ_P (
-    double R, double theta, double phi, double *h, double *h_der,
-    displacement *displ, int len, Parameters *params)
+int compute_displ_P (double R, double theta, double phi, double *h, double *h_der,
+                     displacement *displ, int len, Parameters *params)
 {
     // making parameters local to avoid multiple "params->"
     double moment = params->moment; double alpha = params->alpha;
@@ -78,38 +76,37 @@ int compute_displ_P (
     for (int j = 0; j< shift_P; j++)
     {
         displ->P[j] = 0.0;
-    };
+    }
 
     // Non-zero displacements
     for (int i = 0; i < (len - shift_P); i++)
     {
         if (force_type == "point_force")
         {
-            displ->P[i+shift_P]  = ((cos(theta) * PI / 180.0) * h[i]) /
-                                   (4 * PI * rho * pow(alpha, 2) * R);
-        };
+            displ->P[i+shift_P] = ((cos(theta) * PI / 180.0) * h[i]) / (4 * PI * rho * pow(alpha, 2) * R);
+        }
 
         if (force_type == "single_couple")
         {
-            displ->P[i+shift_P]  = (-sin(2.0*phi * PI / 180.0)*pow(sin(theta * PI / 180.0), 2) *
+            displ->P[i+shift_P] = (-sin(2.0*phi * PI / 180.0)*pow(sin(theta * PI / 180.0), 2) *
                                    moment * h_der[i]) / (8.0 * PI * rho * pow(alpha, 3) * R);
-        };
+        }
 
         if (force_type == "double_couple")
         {
             displ->P[i+shift_P]  = (-sin(2.0*phi * PI / 180.0)*pow(sin(theta * PI / 180.0), 2) *
-                                   moment * h_der[i]) / (4.0 * PI * rho * pow(alpha, 3) * R);
-        };
+                                    moment * h_der[i]) / (4.0 * PI * rho * pow(alpha, 3) * R);
+        }
 
         if (force_type == "force_dipole")
         {
             displ->P[i+shift_P]  = (pow(sin(theta * PI / 180.0),2)*pow(cos(phi * PI / 180.0), 2) *
-                                   moment * h[i]) / (4.0 * PI * rho * pow(alpha, 3) * R);
-        };
-    };
+                                    moment * h[i]) / (4.0 * PI * rho * pow(alpha, 3) * R);
+        }
+    }
 
     return 0;
-};
+}
 
 /**
  * Author:            Oluwaseun Fadugba
@@ -121,9 +118,8 @@ int compute_displ_P (
  *
  */
 
-int compute_displ_SH_SV (
-    double R, double theta, double phi, double *h, double *h_der,
-    displacement *displ, int len, Parameters *params)
+int compute_displ_SH_SV (double R, double theta, double phi, double *h, double *h_der,
+                         displacement *displ, int len, Parameters *params)
 {
     // making parameters local to avoid multiple "params->"
     double moment = params->moment; double beta = params->beta;
@@ -138,38 +134,39 @@ int compute_displ_SH_SV (
     {
         displ->SH[j] = 0.0;
         displ->SV[j] = 0.0;
-    };
+    }
 
     // Non-zero displacements
     for (int i=0; i<len; i++)
     {
         if (force_type == "point_force")
         {
-            displ->SH[i+shift_S] = (-sin(theta * PI / 180.0) * h[i]) /
-                                   (4 * PI * rho * pow(beta, 2) * R);
+            displ->SH[i+shift_S] = (-sin(theta * PI / 180.0) * h[i]) / (4 * PI * rho * pow(beta, 2) * R);
             displ->SV[i+shift_S] = displ->SH[i+shift_S];
-        };
+        }
         if (force_type == "single_couple")
         {
             displ->SH[i+shift_S] = (sin(theta * PI / 180.0)*pow(sin(phi * PI / 180.0), 2) *
-                                   moment * h_der[i]) / (8.0 * PI * rho * pow(beta, 3) * R);
+                                    moment * h_der[i]) / (8.0 * PI * rho * pow(beta, 3) * R);
+            
             displ->SV[i+shift_S] = (-sin(2.0*theta * PI / 180.0)*(sin(2.0*phi * PI / 180.0)) *
-                                   moment * h_der[i]) / (16.0 * PI * rho * pow(beta, 3) * R);      
-        };
+                                    moment * h_der[i]) / (16.0 * PI * rho * pow(beta, 3) * R);
+        }
         if (force_type == "double_couple")
         {
             displ->SH[i+shift_S] = (-sin(theta * PI / 180.0)*(cos(2.0*phi * PI / 180.0)) *
-                                   moment * h_der[i]) / (4.0 * PI * rho * pow(beta, 3) * R);
+                                    moment * h_der[i]) / (4.0 * PI * rho * pow(beta, 3) * R);
             displ->SV[i+shift_S] = (-sin(2.0*theta * PI / 180.0)*(sin(2.0*phi * PI / 180.0)) *
-                                   moment * h_der[i]) / (8.0 * PI * rho * pow(beta, 3) * R);
-        };
+                                    moment * h_der[i]) / (8.0 * PI * rho * pow(beta, 3) * R);
+        }
         if (force_type == "force_dipole")
         {
             displ->SH[i+shift_S] = (-sin(theta * PI / 180.0)*(sin(2.0*phi * PI / 180.0)) *
-                                   moment * h[i]) / (8.0 * PI * rho * pow(beta, 3) * R);
+                                    moment * h[i]) / (8.0 * PI * rho * pow(beta, 3) * R);
             displ->SV[i+shift_S] = (cos(theta * PI / 180.0)*(cos(phi * PI / 180.0)) *
-                                   moment * h[i]) / (4.0 * PI * rho * pow(beta, 3) * R);
-        };
-    };
+                                    moment * h[i]) / (4.0 * PI * rho * pow(beta, 3) * R);
+        }
+    }
+
     return 0;
-};
+}
