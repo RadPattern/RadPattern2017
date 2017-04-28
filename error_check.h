@@ -6,7 +6,7 @@
  * This file contains the prototypes and a short description of all the functions used for checking errors
  *
  */
- 
+
 #include <iostream>
 #include <string>
 #include <fstream>

@@ -6,7 +6,7 @@
  * This file contains the prototypes all functions used for reading parameters in.
  *
  */
- 
+
 #include <iostream>
 #include <string>
 #include <fstream>

@@ -114,7 +114,7 @@ int check_grid(double xx, double yy, Parameters *params)
     }  
 
     return 0;
-};
+}
 
 /**
  * Author:            Oluwaseun Fadugba
@@ -134,10 +134,10 @@ int check_loc(double R, double theta, double phi)
         cout << "--------------------------------------------------------------- \n";
         cout << endl;
         exit(EXIT_FAILURE);
-    };  
+    }
 
     return 0;
-};
+}
 
 /**
  * Author:            Oluwaseun Fadugba
@@ -157,10 +157,10 @@ int check_t_len(double len, int i)
         cout << "--------------------------------------------------------------- \n";
         cout << endl;
         exit(EXIT_FAILURE);
-    };  
+    }
 
     return 0;
-};
+}
 
 /**
  * Author:            Oluwaseun Fadugba
@@ -182,8 +182,8 @@ int check_outfile(int index, int str)
             cout << endl;
 
             exit(EXIT_FAILURE);
-        };
-    };
+        }
+    }
 
     if (str == 2)
     {
@@ -196,11 +196,11 @@ int check_outfile(int index, int str)
             cout << endl;
 
             exit(EXIT_FAILURE);
-        };
-    };
+        }
+    }
 
     return 0;
-};
+}
 
 /**
  * Author:            Oluwaseun Fadugba
@@ -222,10 +222,10 @@ int check_size(int i)
 
         MPI_Abort(MPI_COMM_WORLD, 0);
         exit(EXIT_FAILURE);
-    };  
+    }
 
     return 0;
-};
+}
 
 
 

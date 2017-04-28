@@ -29,11 +29,10 @@ using namespace std;
 
 void gauss_func (double *h, double *h_der, int len, Parameters *params)
 {
-    
     double total_time = params->total_time; 
     double time_step = params->time_step;
-
     double a = 2.2/ total_time;  //Mean of distribution
+    
     // set standard deviation
     double sigma = 0.75;
     double s = 2.0 * sigma * sigma;
@@ -53,5 +52,6 @@ void gauss_func (double *h, double *h_der, int len, Parameters *params)
               h_der[i] =0.0;
              }
     }
+
     return;
 }

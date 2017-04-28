@@ -176,13 +176,15 @@ int read_string(string str[], int i, string &string_value)
 int read_float(string str[], int i, float &float_value)
 {
     char* c;
+    string variable_name;
 
-    string variable_name = str[i];
+    variable_name = str[i];
     cout << variable_name << "=\t" << endl;
 
     c = const_cast<char*>(str[i+1].c_str());
     sscanf(c, "%e", &float_value);
     cout << float_value << endl << "\n";
+
     return 0;
 }
 
@@ -243,5 +245,6 @@ int out_logfile(Parameters *params)
     cout << "login file has been written.\n" <<endl;
 
     logfile.close();
+
     return 0;
 }

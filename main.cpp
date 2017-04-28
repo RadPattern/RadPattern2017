@@ -58,7 +58,7 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     clock_t t1 = clock(); //beginning time
-  
+
     int rank;
     int size;
 
@@ -79,23 +79,23 @@ int main(int argc, char* argv[])
     {
         cout << "Welcome to Radiation Pattern parallel program!\n";
         cout << endl;
-    }; 
+    }
 
     // Create a barrier here
     MPI_Barrier(MPI_COMM_WORLD);
 
     // Introduction by each processors
     cout << "I am processor " << rank << " out of " << size << endl;
-  
+
     // Declare all parameters and files
     Parameters params;
     displacement displ; 
     radiation_pattern radiation;
-    
+
     // Parameters will be read from input file, checked  for their reasonability,
     // stored into memory, and then written into login file
     process_parameter(argc, argv, &params); 
-    
+
     int len = params.total_time/ params.time_step;
     double *t = new double[len];   
     init_time (t, len, &params); //initializes time array
@@ -108,7 +108,7 @@ int main(int argc, char* argv[])
 
     //This function generates a guassian function and its derivative
     gauss_func (h, h_der, len, &params);
- 
+
     // Create a barrier here
     MPI_Barrier(MPI_COMM_WORLD);
 
@@ -137,9 +137,9 @@ int main(int argc, char* argv[])
                 compute_displ (R[1], theta[1], phi[1] , h, h_der, &displ, len, &params);
                 rad_pattern (theta[1], phi[1], &radiation, &params);
                 write_2_file (&displ, &radiation, t, xx, yy, params.outputfile_path, len);
-             };
-        };
-    };
+             }
+        }
+    }
 
     // Create a barrier here
     MPI_Barrier(MPI_COMM_WORLD);
@@ -150,9 +150,9 @@ int main(int argc, char* argv[])
         "Good bye.\n"<< endl;
 
         std::cout << "Execution time : "<<float( clock () - t1 ) / CLOCKS_PER_SEC<< endl;
-    };
-    
+    }
+
     MPI_Finalize();
 
     return 0;
-};
+}

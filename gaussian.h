@@ -6,6 +6,7 @@
  * This file contains the prototypes and a short description of all the functions used
  * to generate a guassian function and its derivative using total time and time steps.
  */
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -23,4 +24,3 @@ using namespace std;
 // ------------------------------------------------------------------------------------
 
 void gauss_func (double *h, double *h_der, int len, Parameters *params);
-
