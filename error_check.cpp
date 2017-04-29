@@ -110,7 +110,7 @@ int check_grid(double xx, double yy, Parameters *params)
         cout << "----------------------------------------------------------------- \n";
         cout << endl;
         exit(EXIT_FAILURE);
-    }  
+    }
 
     return 0;
 }
@@ -126,7 +126,7 @@ int check_grid(double xx, double yy, Parameters *params)
 int check_loc(double R, double theta, double phi)
 {
     if (R < 0.0 || abs(theta) > 91 || abs(phi) > 181 )
-    { 
+    {
         cout << "--------------------------Error! ------------------------------ \n";
         cout << "Invalid spherical location for displacement field calculations! \n";
         cout << "--------Check the consistency of the domain geometry----------- \n";
@@ -149,7 +149,7 @@ int check_loc(double R, double theta, double phi)
 int check_t_len(double len, int i)
 {
     if (len != i)
-    { 
+    {
         cout << "--------------------------Error! ------------------------------ \n";
         cout << "-------------Error initializing time array--------------------- \n";
         cout << "--Required total time should be divisible by time step--------- \n";
@@ -183,7 +183,6 @@ int check_outfile(int index, int str)
             exit(EXIT_FAILURE);
         }
     }
-
     if (str == 2)
     {
         if (index != 0)

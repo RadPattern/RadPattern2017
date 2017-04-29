@@ -7,7 +7,7 @@
  * using location(x,y)
  *
  */
- 
+
 #include <iostream>
 #include <string>
 #include <fstream>

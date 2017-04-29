@@ -83,7 +83,7 @@ int write_displ (displacement *displ, double *t, double xx, double yy, string ou
 
     fout << "\n"; fout << endl; 
     fout.close();
-    
+
     return 0;
 }
 
@@ -99,8 +99,7 @@ int write_displ (displacement *displ, double *t, double xx, double yy, string ou
  *
  */
 
-int write_rad_patt (
-    radiation_pattern *radiation, double xx, double yy, string outputfilename)
+int write_rad_patt (radiation_pattern *radiation, double xx, double yy, string outputfilename)
 {
     char str[80]; strcpy (str, outputfilename.c_str()); strcat (str,"_rad_patt.txt");
 

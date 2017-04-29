@@ -53,18 +53,18 @@ using namespace std;
  */
 
 int main(int argc, char* argv[])
-{  
+{
     clock_t t1 = clock(); //beginning time
 
     // Declare all parameters and files
     Parameters params;
     displacement displ; 
     radiation_pattern radiation;
-    
+
     // Parameters will be read from input file, checked  for their reasonability,
     // stored into memory, and then written into login file
     process_parameter(argc, argv, &params);
-      
+
     int len = params.total_time/ params.time_step;
     double *t = new double[len];   
     init_time (t, len, &params); //initializes time array
