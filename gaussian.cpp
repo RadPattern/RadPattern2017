@@ -53,5 +53,5 @@ void gauss_func (double *h, double *h_der, int len, Parameters *params)
              }
     }
 
-    return;
+    return 0;
 }
